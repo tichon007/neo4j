@@ -1,0 +1,12 @@
+MATCH p= (:Author { name: 'Antonio Frangioni' }) return nodes(p)
+
+
+MATCH (a:Author { name: 'DARIO COLAZZO' })-[:CO_AUTHOR]-(b:Author{isFromLamsad:false})
+RETURN b.name
+
+MATCH (a:Author{isFromLamsad:true} )-[:CO_AUTHOR]-(b:Author{isFromLamsad:false}) RETURN a.name,count(*)
+
+MATCH (a:Author{isFromLamsad:false} )-[:CO_AUTHOR]-(b:Author{isFromLamsad:true}) RETURN a.name,count(*)
+
+MATCH (n)
+DETACH DELETE n
